@@ -160,7 +160,7 @@
 <h1 class="text-display-lg font-light tracking-tight text-on-surface mb-2" style="font-size: 3.5rem; line-height: 1;">Appointments</h1>
 <p class="text-body-md text-tertiary max-w-md">Manage your clinical sessions and view historical medical consultations within the Atelier network.</p>
 </div>
-<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-xl shadow-[0_8px_20px_rgba(0,72,141,0.2)] flex items-center gap-3 font-semibold hover:opacity-90 transition-opacity active:scale-95 duration-200">
+<button onclick="document.getElementById('newAppointmentModal').classList.remove('hidden'); document.getElementById('newAppointmentModal').classList.add('flex')" class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-xl shadow-[0_8px_20px_rgba(0,72,141,0.2)] flex items-center gap-3 font-semibold hover:opacity-90 transition-opacity active:scale-95 duration-200">
 <span class="material-symbols-outlined">add</span>
 <span>Book New Appointment</span>
 </button>
@@ -198,10 +198,7 @@
 <span class="bg-secondary-container text-on-secondary-container text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">No Upcoming Appointments</span>
 </div>
 {% endif %}
-<div>
-<p class="text-title-lg font-semibold">Today, 14:30</p>
-<p class="text-body-md text-slate-400">Virtual Consultation</p>
-</div>
+
 </div>
 </div>
 <div class="p-8 w-full md:w-72 bg-slate-50/50 flex flex-col items-center justify-center text-center">
@@ -271,8 +268,50 @@
 <!-- Mobile Navigation Suppressed as per Task-Focused Page Rule (Details/Flow Priority) -->
 <!-- However, providing a floating back-to-top for mobile usability -->
 <div class="fixed bottom-6 right-6 md:hidden">
-<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center">
+<button onclick="document.getElementById('newAppointmentModal').classList.remove('hidden'); document.getElementById('newAppointmentModal').classList.add('flex')" class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center">
 <span class="material-symbols-outlined">add</span>
 </button>
 </div>
+
+<!-- New Appointment Modal -->
+<div id="newAppointmentModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden items-center justify-center">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden animate-fade-in-up">
+        <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+            <h3 class="text-lg font-bold text-slate-800 font-headline">Book New Appointment</h3>
+            <button onclick="document.getElementById('newAppointmentModal').classList.add('hidden'); document.getElementById('newAppointmentModal').classList.remove('flex')" class="text-slate-400 hover:text-slate-600 transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <form action="{{ url_for('appointments') }}" method="POST" class="p-6 space-y-4">
+            <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Doctor Name</label>
+                <input type="text" name="doctor_name" required class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Specialty</label>
+                <input type="text" name="specialty" required class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Clinic/Location</label>
+                <input type="text" name="clinic" required class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Date & Time</label>
+                <input type="text" name="date_time" required placeholder="e.g. OCT 24, 10:00 AM" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Consultation Type</label>
+                <select name="type" required class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+                    <option value="In-Person Consultation">In-Person Consultation</option>
+                    <option value="Video Consultation">Video Consultation</option>
+                </select>
+            </div>
+            <div class="pt-4 flex gap-3">
+                <button type="button" onclick="document.getElementById('newAppointmentModal').classList.add('hidden'); document.getElementById('newAppointmentModal').classList.remove('flex')" class="flex-1 px-4 py-2.5 border border-slate-200 text-slate-600 rounded-lg text-sm font-semibold hover:bg-slate-50 transition-colors">Cancel</button>
+                <button type="submit" class="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30">Book Appointment</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 </body></html>
