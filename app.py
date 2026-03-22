@@ -1,4 +1,6 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 import sqlite3
@@ -103,6 +105,10 @@ def appointments():
     conn.close()
     return render_template('appointments.html', user=user, next_appointment=next_appointment, appointments=appointments)
 
+UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploads')
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 @app.route('/reports', methods=('GET', 'POST'))
 @login_required
 def reports():
@@ -112,8 +118,19 @@ def reports():
         title = request.form['title']
         description = request.form['description']
         date = datetime.datetime.now().strftime("%Y-%m-%d")
-        conn.execute('INSERT INTO MedicalReports (user_id, title, date, description) VALUES (?, ?, ?, ?)',
-                     (user_id, title, date, description))
+
+        file = request.files.get('file')
+        file_path = None
+        if file and file.filename != '':
+            filename = secure_filename(file.filename)
+            # Make filename unique per user to prevent overrides
+            unique_filename = f"u{user_id}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}_{filename}"
+            save_path = os.path.join(app.config['UPLOAD_FOLDER'], unique_filename)
+            file.save(save_path)
+            file_path = f"uploads/{unique_filename}"
+
+        conn.execute('INSERT INTO MedicalReports (user_id, title, date, description, file_path) VALUES (?, ?, ?, ?, ?)',
+                     (user_id, title, date, description, file_path))
         conn.commit()
         return redirect(url_for('reports'))
 
