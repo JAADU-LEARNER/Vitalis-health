@@ -88,9 +88,9 @@
 <div class="flex items-center gap-8">
 <span class="text-xl font-light tracking-tighter text-blue-900 dark:text-blue-100 font-headline">The Clinical Atelier</span>
 <nav class="hidden md:flex items-center gap-6">
-<a class="text-blue-700 dark:text-blue-400 font-semibold font-manrope text-sm tracking-tight active:scale-95 duration-200" href="#">Dashboard</a>
-<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors font-manrope text-sm tracking-tight px-3 py-1 rounded-lg" href="#">Appointments</a>
-<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors font-manrope text-sm tracking-tight px-3 py-1 rounded-lg" href="#">Medical Reports</a>
+<a class="text-blue-700 dark:text-blue-400 font-semibold font-manrope text-sm tracking-tight active:scale-95 duration-200" href="{{ url_for('dashboard') }}">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors font-manrope text-sm tracking-tight px-3 py-1 rounded-lg" href="{{ url_for('appointments') }}">Appointments</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors font-manrope text-sm tracking-tight px-3 py-1 rounded-lg" href="{{ url_for('reports') }}">Medical Reports</a>
 </nav>
 </div>
 <div class="flex items-center gap-4">
@@ -109,33 +109,33 @@
 <p class="text-[11px] text-emerald-700 font-bold uppercase tracking-widest mt-1">Verified Status</p>
 </div>
 <nav class="flex-1 space-y-1">
-<a class="flex items-center gap-3 py-3 text-blue-800 dark:text-blue-300 font-bold border-r-4 border-blue-600 dark:border-blue-400 pr-4 cursor-pointer ease-in-out" href="#">
+<a class="flex items-center gap-3 py-3 text-blue-800 dark:text-blue-300 font-bold border-r-4 border-blue-600 dark:border-blue-400 pr-4 cursor-pointer ease-in-out" href="{{ url_for('dashboard') }}">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Dashboard</span>
 </a>
-<a class="flex items-center gap-3 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300" href="#">
+<a class="flex items-center gap-3 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300" href="{{ url_for('appointments') }}">
 <span class="material-symbols-outlined">calendar_today</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Appointments</span>
 </a>
-<a class="flex items-center gap-3 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300" href="#">
+<a class="flex items-center gap-3 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300" href="{{ url_for('reports') }}">
 <span class="material-symbols-outlined">description</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Medical Reports</span>
 </a>
-<a class="flex items-center gap-3 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300" href="#">
+<a class="flex items-center gap-3 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300" href="{{ url_for('pharmacy') }}">
 <span class="material-symbols-outlined">medical_services</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Pharmacy</span>
 </a>
-<a class="flex items-center gap-3 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300" href="#">
+<a class="flex items-center gap-3 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300" href="{{ url_for('reviews') }}">
 <span class="material-symbols-outlined">rate_review</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Doctor Reviews</span>
 </a>
 </nav>
 <div class="mt-auto pt-8 border-t border-outline-variant/15 space-y-1">
-<a class="flex items-center gap-3 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300" href="#">
+<a class="flex items-center gap-3 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300" href="{{ url_for('settings') }}">
 <span class="material-symbols-outlined">settings</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Settings</span>
 </a>
-<a class="flex items-center gap-3 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300" href="#">
+<a class="flex items-center gap-3 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300" href="{{ url_for('logout') }}">
 <span class="material-symbols-outlined">logout</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Logout</span>
 </a>
@@ -288,19 +288,19 @@
 </div>
 <!-- Mobile Navigation Shell -->
 <nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white/80 backdrop-blur-xl flex justify-around items-center px-4 z-50 border-t border-outline-variant/15">
-<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<a class="flex flex-col items-center gap-1 text-primary" href="{{ url_for('dashboard') }}">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
 <span class="text-[10px] font-bold uppercase">Home</span>
 </a>
-<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="{{ url_for('appointments') }}">
 <span class="material-symbols-outlined">calendar_month</span>
 <span class="text-[10px] font-bold uppercase">Visits</span>
 </a>
-<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="{{ url_for('reports') }}">
 <span class="material-symbols-outlined">clinical_notes</span>
 <span class="text-[10px] font-bold uppercase">Labs</span>
 </a>
-<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="{{ url_for('profile') }}">
 <span class="material-symbols-outlined">person</span>
 <span class="text-[10px] font-bold uppercase">Profile</span>
 </a>
