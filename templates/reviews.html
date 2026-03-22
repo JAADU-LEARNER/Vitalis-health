@@ -186,131 +186,42 @@
 </section>
 <!-- Doctors Grid -->
 <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-<!-- Doctor Card 1 -->
+
+{% for review in reviews %}
 <article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_32px_64px_rgba(0,72,141,0.06)] flex flex-col md:flex-row h-full transition-transform hover:-translate-y-1 duration-300">
 <div class="md:w-2/5 relative">
-<img alt="Dr. Julian Vane" class="w-full h-full object-cover" data-alt="Portrait of a professional male doctor in a white coat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAizGJMLaPzVby3LkeGY860e0uZgWb54rrD3RP7hNLxSUskMp5bjFtLh8VlyZSBZUpzEnwThGJN_IdDqCJ9-ymS4WIbI8IM6Df9YxYmiR1mMg7nYzTzd9R5zm8zCEh6eRHu8nX-4CDa2NTOBa8UzaSlnp8s0qHwnXTHtrykGqyUIQaU48o9-SlWhocFRiRQZV_NUgwQFm82mOK2fe8uBbp_RuG5IFw7qcuCLBA2ro3eOgAZby-DOUhCM2i5wv5G5Z-mkU3KFVgwvaRt"/>
+<div class="w-full h-full bg-slate-200 min-h-[200px] flex items-center justify-center">
+    <span class="material-symbols-outlined text-6xl text-slate-400">person</span>
+</div>
 <div class="absolute bottom-4 left-4 glass-effect bg-white/40 px-3 py-1 rounded-full flex items-center gap-1">
 <span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="text-xs font-bold text-on-surface">4.9 (124)</span>
+<span class="text-xs font-bold text-on-surface">{{ review.rating }}.0</span>
 </div>
 </div>
 <div class="md:w-3/5 p-8 flex flex-col">
 <div class="mb-4">
-<h3 class="text-xl font-headline font-bold text-primary">Dr. Julian Vane</h3>
-<p class="text-secondary font-medium text-sm">Senior Consultant Cardiology</p>
+<h3 class="text-xl font-headline font-bold text-primary">{{ review.doctor_name }}</h3>
 </div>
 <div class="space-y-4 mb-6 flex-1">
 <div class="flex items-start gap-3">
-<div class="w-8 h-8 rounded-full overflow-hidden shrink-0 mt-1">
-<img alt="Reviewer" data-alt="Portrait of a young woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBap1e5Oa2XTc2n80yd4HudtHNv0k7q9O5PcgrR4i0qG2sjgdeQHbcyxTkL6e-eKM-GQ9UGFurfdIsmjnh_Q4LTnhJ6WBuC6mnro74m7mfqJmRjplFcvFFzwFzCBMtZ9ueHMr3XDiXLOCuSAPSs8WUfDf5tE_-N8GE3qE3HrMDzHdguv3265QUa4MKLm-OvkTDrunA2JB2cCLp45QPaweGInDLk17Ik9w5jDynZwNHLWiwosX-EcwNwyISL1RFv2EGY5-YIbpDj_J86"/>
-</div>
-<div class="bg-surface-container-low p-3 rounded-xl rounded-tl-none">
+<div class="bg-surface-container-low p-3 rounded-xl rounded-tl-none w-full">
 <div class="flex items-center gap-2 mb-1">
-<span class="text-xs font-bold">Elena R.</span>
+<span class="text-xs font-bold">You</span>
 <div class="flex items-center gap-1 bg-secondary-fixed text-on-secondary-fixed text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-tighter">
-<span class="material-symbols-outlined text-[12px]">verified</span>
-                                            Verified
-                                        </div>
-</div>
-<p class="text-xs text-on-surface-variant italic">"Extremely thorough with my cardiovascular assessment. Highly recommend."</p>
+<span class="material-symbols-outlined text-[10px]">verified</span> Verified Patient
 </div>
 </div>
+<p class="text-sm text-tertiary">"{{ review.review }}"</p>
 </div>
-<div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
-<button class="text-sm font-semibold text-primary hover:text-primary-container transition-colors flex items-center gap-2">
-                                Read all 124 reviews
-                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
+</div>
 </div>
 </div>
 </article>
-<!-- Doctor Card 2 -->
-<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_32px_64px_rgba(0,72,141,0.06)] flex flex-col md:flex-row h-full transition-transform hover:-translate-y-1 duration-300">
-<div class="md:w-2/5 relative">
-<img alt="Dr. Sarah Chen" class="w-full h-full object-cover" data-alt="Portrait of a professional female doctor in a clinic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsKPwy5E2h9TpdhsR_TjGLWzjGUls3sQMQGEI7XCh4kjYmDLMEHcjiLHdRzTGjOBeWNpq1fVYToorWt7FP3_avTUU5faynnYpvK827IUjZbB5680cFD0C9F3xTRyNo5wFB74h8jLwe6XQcbDIqKYzX-BYcfl6ovx2zHHZnrS9KeE7y35jmAKc9W-fZ_ozHVT3npPEifydoVf4ElUBcH4Ae6CtY6sFMy_oGJ0tBQ2XyO2EMecuGrzeQNN7yzwIZKSDY5n-J6wE94ctL"/>
-<div class="absolute bottom-4 left-4 glass-effect bg-white/40 px-3 py-1 rounded-full flex items-center gap-1">
-<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="text-xs font-bold text-on-surface">4.8 (98)</span>
-</div>
-</div>
-<div class="md:w-3/5 p-8 flex flex-col">
-<div class="mb-4">
-<h3 class="text-xl font-headline font-bold text-primary">Dr. Sarah Chen</h3>
-<p class="text-secondary font-medium text-sm">Chief of Dermatology</p>
-</div>
-<div class="space-y-4 mb-6 flex-1">
-<div class="flex items-start gap-3">
-<div class="w-8 h-8 rounded-full overflow-hidden shrink-0 mt-1">
-<img alt="Reviewer" data-alt="Portrait of a smiling man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF_YBN2pm3yMArMtyP18AsarGuwNHBpLeY9kcxbzsWSl3rbUMCtENFwRY8PMbJmwIGja6pdJrsdHPtPG9zT6ikWLj18k4fN3B0dtMUi9kaqY5bLUFWCmwZA4hT8F_zo6CQhO83dh4rW56HW00XLIxhIVe_k_HFRBS_UwGsyexB96kgKmRA8Ynr89RYKVMDEwzQehHrp8LqVupNJdo0W4hYWBzwQdsw371qUTJy-t1p5vKmQuismSB7IPMOfd-2PMUASI_n9N43ET_J"/>
-</div>
-<div class="bg-surface-container-low p-3 rounded-xl rounded-tl-none">
-<div class="flex items-center gap-2 mb-1">
-<span class="text-xs font-bold">Marcus T.</span>
-<div class="flex items-center gap-1 bg-secondary-fixed text-on-secondary-fixed text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-tighter">
-<span class="material-symbols-outlined text-[12px]">verified</span>
-                                            Verified
-                                        </div>
-</div>
-<p class="text-xs text-on-surface-variant italic">"Amazing bedside manner and great results on my treatment plan."</p>
-</div>
-</div>
-</div>
-<div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
-<button class="text-sm font-semibold text-primary hover:text-primary-container transition-colors flex items-center gap-2">
-                                Read all 98 reviews
-                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
-</div>
-</div>
-</article>
-<!-- Doctor Card 3 -->
-<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_32px_64px_rgba(0,72,141,0.06)] flex flex-col md:flex-row h-full transition-transform hover:-translate-y-1 duration-300">
-<div class="md:w-2/5 relative">
-<img alt="Dr. Michael Okafor" class="w-full h-full object-cover" data-alt="Portrait of a friendly male doctor in clinical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlrLon-By1OsTTelYSAJLr76A7CRwynX98MtJrdsZgmOvizLEsFRvf8CDGm0w4XIJAf3Rvo9B9sH6301Ldhm5VGcleXULfFyxGg7WgzfCXBu8SXGdfq90ocRDuAx8JIBnzvPjdAv1eXfapllc4zFf52HTVmzppuyDOM4AGegxBTIZ2UPy9-uZ4p_C4E69E8YTQHm_0WA2AW5XsYRqmcuJn62f4MX84G4Cj27b24TEytPElS3tMPfuQE7VRfzGnzk1cstAH15-Qaf-l"/>
-<div class="absolute bottom-4 left-4 glass-effect bg-white/40 px-3 py-1 rounded-full flex items-center gap-1">
-<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="text-xs font-bold text-on-surface">5.0 (215)</span>
-</div>
-</div>
-<div class="md:w-3/5 p-8 flex flex-col">
-<div class="mb-4">
-<h3 class="text-xl font-headline font-bold text-primary">Dr. Michael Okafor</h3>
-<p class="text-secondary font-medium text-sm">Neurology &amp; Sleep Medicine</p>
-</div>
-<div class="space-y-4 mb-6 flex-1">
-<div class="flex items-start gap-3">
-<div class="w-8 h-8 rounded-full overflow-hidden shrink-0 mt-1">
-<img alt="Reviewer" data-alt="Portrait of a woman looking sideways" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB45RCyHkZjP92pP4uzzOlT3fKbqAm0UlUr8gVdxIgzpmBjBawqOmArLR5K_kLY9EBRbOTJkqZJZrlVf-aiYn0CenM1gzV5lzVtV4N5cLX1ikwIy5IAPYwWQ8Fmuki_hiRWEKMZkcxKFfDOrVpz--Zwnd0F0RfdZNSvv7fQ_66gJQ_PwecmX_ZaaPA8EBU5PEdmAtlnIs83S2VOOwBgRFQYX6VQgeKuIrFUyF71ZFhbbTLfafblErTBxaa6Zav6bRGvmcCqaN1a8qP"/>
-</div>
-<div class="bg-surface-container-low p-3 rounded-xl rounded-tl-none">
-<div class="flex items-center gap-2 mb-1">
-<span class="text-xs font-bold">Sophia K.</span>
-<div class="flex items-center gap-1 bg-secondary-fixed text-on-secondary-fixed text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-tighter">
-<span class="material-symbols-outlined text-[12px]">verified</span>
-                                            Verified
-                                        </div>
-</div>
-<p class="text-xs text-on-surface-variant italic">"Found the root cause of my insomnia after years of searching. Brilliant doctor."</p>
-</div>
-</div>
-</div>
-<div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
-<button class="text-sm font-semibold text-primary hover:text-primary-container transition-colors flex items-center gap-2">
-                                Read all 215 reviews
-                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
-</div>
-</div>
-</article>
-<!-- Feedback Callout Card -->
-<article class="bg-surface-container-high rounded-xl p-8 flex flex-col justify-center border-2 border-dashed border-outline-variant/30 text-center">
-<span class="material-symbols-outlined text-5xl text-primary mb-6" data-icon="edit_note">edit_note</span>
-<h3 class="text-2xl font-headline font-medium text-on-surface mb-2">Help Others Choose</h3>
-<p class="text-sm text-tertiary mb-8">Your feedback helps fellow patients find the right specialist for their unique needs.</p>
-<button class="w-full py-4 bg-white text-primary border border-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all duration-300">Share Your Experience</button>
-</article>
+{% else %}
+<p class="text-tertiary body-md col-span-2 text-center">No reviews submitted yet.</p>
+{% endfor %}
 </section>
+
 <!-- Bottom Margin for Floating Shell -->
 <div class="h-24"></div>
 </main>

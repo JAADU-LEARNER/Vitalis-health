@@ -51,9 +51,11 @@ def init_db():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS PharmacyMedications (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
             name TEXT NOT NULL,
             dosage TEXT,
-            instructions TEXT
+            instructions TEXT,
+            FOREIGN KEY (user_id) REFERENCES Users(id)
         )
     ''')
 
@@ -120,7 +122,7 @@ def init_db():
     # Add other seed data...
     cursor.execute("INSERT INTO MedicalReports (user_id, title, date, description) VALUES (?, 'Lab Results - Fasting Bloodwork', '2023-10-01', 'Normal values across all metrics.')", (user_id,))
 
-    cursor.execute("INSERT INTO PharmacyMedications (name, dosage, instructions) VALUES ('Vitamin D3', '1000 IU', 'Take with breakfast')")
+    cursor.execute("INSERT INTO PharmacyMedications (user_id, name, dosage, instructions) VALUES (?, 'Vitamin D3', '1000 IU', 'Take with breakfast')", (user_id,))
 
     cursor.execute("INSERT INTO Notifications (user_id, title, message, time) VALUES (?, 'Vitamin D3', 'Take with breakfast', '8:00 AM')", (user_id,))
 

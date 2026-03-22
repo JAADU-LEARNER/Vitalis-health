@@ -157,7 +157,7 @@
 <span class="material-symbols-outlined text-[20px]" data-icon="history">history</span>
 <span class="label-md">Past Orders</span>
 </button>
-<button class="flex items-center gap-2 px-6 py-3 bg-primary text-on-primary font-medium rounded-xl hover:bg-primary-container transition-all active:scale-95 duration-200 shadow-lg shadow-primary/20">
+<button onclick="document.getElementById('uploadScriptModal').classList.remove('hidden'); document.getElementById('uploadScriptModal').classList.add('flex')" class="flex items-center gap-2 px-6 py-3 bg-primary text-on-primary font-medium rounded-xl hover:bg-primary-container transition-all active:scale-95 duration-200 shadow-lg shadow-primary/20">
 <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
 <span class="label-md">Upload Script</span>
 </button>
@@ -213,72 +213,43 @@
                         VIEW ALL <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </button>
 </div>
-<!-- Prescription Card 1 -->
+
+<div class="space-y-6">
+{% for med in medications %}
+<!-- Prescription Card -->
 <div class="bg-surface-container-lowest rounded-[2rem] p-8 group hover:shadow-[0_32px_64px_rgba(0,72,141,0.08)] transition-all duration-500 border border-transparent hover:border-outline-variant/10">
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-<div class="flex gap-6">
-<div class="w-16 h-16 rounded-2xl bg-secondary-container flex items-center justify-center text-on-secondary-container shrink-0">
-<span class="material-symbols-outlined text-3xl" data-icon="pill">pill</span>
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="flex gap-6">
+            <div class="w-16 h-16 rounded-2xl bg-secondary-container flex items-center justify-center text-on-secondary-container shrink-0">
+                <span class="material-symbols-outlined text-3xl" data-icon="pill">pill</span>
+            </div>
+            <div class="space-y-1">
+                <h3 class="title-lg font-headline font-bold text-on-surface">{{ med.name }}</h3>
+                <div class="flex flex-wrap gap-x-4 gap-y-1 items-center">
+                    <span class="body-md text-tertiary flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">medical_information</span>
+                        {{ med.instructions }}
+                    </span>
+                </div>
+                <p class="body-md mt-4 text-on-surface-variant bg-surface-container-low p-4 rounded-xl">
+                    <span class="font-bold text-primary">Dosage:</span> {{ med.dosage }}
+                </p>
+            </div>
+        </div>
+        <div class="flex flex-col gap-3 min-w-[160px]">
+            <button class="w-full py-3 px-6 rounded-xl bg-primary text-on-primary label-md font-bold hover:shadow-lg transition-shadow active:scale-95 duration-200">
+                REORDER REFILL
+            </button>
+            <p class="text-center text-[11px] text-tertiary uppercase tracking-widest">Active Prescription</p>
+        </div>
+    </div>
 </div>
-<div class="space-y-1">
-<h3 class="title-lg font-headline font-bold text-on-surface">Metformin Hydrochloride</h3>
-<div class="flex flex-wrap gap-x-4 gap-y-1 items-center">
-<span class="body-md text-tertiary flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">medical_information</span>
-                                        Dr. Elena Rossetti
-                                    </span>
-<span class="body-md text-tertiary flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">schedule</span>
-                                        Twice Daily
-                                    </span>
-</div>
-<p class="body-md mt-4 text-on-surface-variant bg-surface-container-low p-4 rounded-xl">
-<span class="font-bold text-primary">Dosage:</span> 500mg Oral Tablet. Take with food to minimize GI side effects.
-                                </p>
-</div>
-</div>
-<div class="flex flex-col gap-3 min-w-[160px]">
-<button class="w-full py-3 px-6 rounded-xl bg-primary text-on-primary label-md font-bold hover:shadow-lg transition-shadow active:scale-95 duration-200">
-                                REORDER REFILL
-                            </button>
-<p class="text-center text-[11px] text-tertiary uppercase tracking-widest">2 Refills Remaining</p>
-</div>
-</div>
-</div>
-<!-- Prescription Card 2 -->
-<div class="bg-surface-container-lowest rounded-[2rem] p-8 group hover:shadow-[0_32px_64px_rgba(0,72,141,0.08)] transition-all duration-500 border border-transparent hover:border-outline-variant/10">
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-<div class="flex gap-6">
-<div class="w-16 h-16 rounded-2xl bg-primary-fixed flex items-center justify-center text-primary shrink-0">
-<span class="material-symbols-outlined text-3xl" data-icon="medication_liquid">medication_liquid</span>
-</div>
-<div class="space-y-1">
-<h3 class="title-lg font-headline font-bold text-on-surface">Lisinopril (Zestril)</h3>
-<div class="flex flex-wrap gap-x-4 gap-y-1 items-center">
-<span class="body-md text-tertiary flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">medical_information</span>
-                                        Dr. Marcus Thorne
-                                    </span>
-<span class="body-md text-tertiary flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">schedule</span>
-                                        Once Daily
-                                    </span>
-</div>
-<p class="body-md mt-4 text-on-surface-variant bg-surface-container-low p-4 rounded-xl">
-<span class="font-bold text-primary">Dosage:</span> 10mg Capsule. Do not take with salt substitutes containing potassium.
-                                </p>
-</div>
-</div>
-<div class="flex flex-col gap-3 min-w-[160px]">
-<button class="w-full py-3 px-6 rounded-xl bg-primary text-on-primary label-md font-bold hover:shadow-lg transition-shadow active:scale-95 duration-200">
-                                REORDER REFILL
-                            </button>
-<p class="text-center text-[11px] text-tertiary uppercase tracking-widest">Refill in 5 Days</p>
-</div>
-</div>
-</div>
+{% else %}
+    <p class="text-tertiary body-md">No active medications found.</p>
+{% endfor %}
 </div>
 </section>
+
 <!-- Pharmacy Search & Map (Asymmetric Section) -->
 <section class="max-w-6xl mx-auto bg-surface-container-high rounded-[3rem] overflow-hidden flex flex-col lg:flex-row">
 <div class="lg:w-1/2 p-12 lg:p-20 space-y-8">
@@ -353,4 +324,35 @@
 <span class="text-[10px] uppercase font-bold tracking-tighter">Me</span>
 </button>
 </nav>
+
+<!-- Upload Script Modal -->
+<div id="uploadScriptModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden items-center justify-center">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden animate-fade-in-up">
+        <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+            <h3 class="text-lg font-bold text-slate-800 font-headline">Add Medication</h3>
+            <button onclick="document.getElementById('uploadScriptModal').classList.add('hidden'); document.getElementById('uploadScriptModal').classList.remove('flex')" class="text-slate-400 hover:text-slate-600 transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <form action="{{ url_for('pharmacy') }}" method="POST" class="p-6 space-y-4">
+            <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Medication Name</label>
+                <input type="text" name="name" required class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Dosage</label>
+                <input type="text" name="dosage" required class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Instructions</label>
+                <input type="text" name="instructions" required class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+            </div>
+            <div class="pt-4 flex gap-3">
+                <button type="button" onclick="document.getElementById('uploadScriptModal').classList.add('hidden'); document.getElementById('uploadScriptModal').classList.remove('flex')" class="flex-1 px-4 py-2.5 border border-slate-200 text-slate-600 rounded-lg text-sm font-semibold hover:bg-slate-50 transition-colors">Cancel</button>
+                <button type="submit" class="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30">Add Medication</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 </body></html>

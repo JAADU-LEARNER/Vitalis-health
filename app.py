@@ -81,34 +81,63 @@ def dashboard():
     conn.close()
     return render_template('dashboard.html', user=user, appointments=appointments, notifications=notifications)
 
-@app.route('/appointments')
+@app.route('/appointments', methods=('GET', 'POST'))
 @login_required
 def appointments():
     user_id = session['user_id']
     conn = get_db_connection()
+    if request.method == 'POST':
+        doctor_name = request.form['doctor_name']
+        specialty = request.form['specialty']
+        clinic = request.form['clinic']
+        date_time = request.form['date_time']
+        appt_type = request.form['type']
+        conn.execute('INSERT INTO Appointments (user_id, doctor_name, specialty, clinic, date_time, status, type) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                     (user_id, doctor_name, specialty, clinic, date_time, 'Scheduled', appt_type))
+        conn.commit()
+        return redirect(url_for('appointments'))
+
     user = conn.execute('SELECT * FROM Users WHERE id = ?', (user_id,)).fetchone()
     next_appointment = conn.execute('SELECT * FROM Appointments WHERE user_id = ? AND status = ? ORDER BY id ASC LIMIT 1', (user_id, 'Scheduled')).fetchone()
     appointments = conn.execute('SELECT * FROM Appointments WHERE user_id = ? ORDER BY id DESC', (user_id,)).fetchall()
     conn.close()
     return render_template('appointments.html', user=user, next_appointment=next_appointment, appointments=appointments)
 
-@app.route('/reports')
+@app.route('/reports', methods=('GET', 'POST'))
 @login_required
 def reports():
     user_id = session['user_id']
     conn = get_db_connection()
+    if request.method == 'POST':
+        title = request.form['title']
+        description = request.form['description']
+        date = datetime.datetime.now().strftime("%Y-%m-%d")
+        conn.execute('INSERT INTO MedicalReports (user_id, title, date, description) VALUES (?, ?, ?, ?)',
+                     (user_id, title, date, description))
+        conn.commit()
+        return redirect(url_for('reports'))
+
     user = conn.execute('SELECT * FROM Users WHERE id = ?', (user_id,)).fetchone()
     reports = conn.execute('SELECT * FROM MedicalReports WHERE user_id = ? ORDER BY date DESC', (user_id,)).fetchall()
     conn.close()
     return render_template('reports.html', user=user, reports=reports)
 
-@app.route('/pharmacy')
+@app.route('/pharmacy', methods=('GET', 'POST'))
 @login_required
 def pharmacy():
     user_id = session['user_id']
     conn = get_db_connection()
+    if request.method == 'POST':
+        name = request.form['name']
+        dosage = request.form['dosage']
+        instructions = request.form['instructions']
+        conn.execute('INSERT INTO PharmacyMedications (user_id, name, dosage, instructions) VALUES (?, ?, ?, ?)',
+                     (user_id, name, dosage, instructions))
+        conn.commit()
+        return redirect(url_for('pharmacy'))
+
     user = conn.execute('SELECT * FROM Users WHERE id = ?', (user_id,)).fetchone()
-    medications = conn.execute('SELECT * FROM PharmacyMedications').fetchall()
+    medications = conn.execute('SELECT * FROM PharmacyMedications WHERE user_id = ?', (user_id,)).fetchall()
     conn.close()
     return render_template('pharmacy.html', user=user, medications=medications)
 

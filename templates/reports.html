@@ -151,6 +151,13 @@
 <p class="text-tertiary body-md max-w-2xl">Access your clinical history, laboratory results, and diagnostic imaging archives. All records are verified by the Atelier clinical board.</p>
 </header>
 <!-- Quick Filter Chips -->
+<div class="flex justify-between items-center mb-6">
+    <button onclick="document.getElementById('uploadReportModal').classList.remove('hidden'); document.getElementById('uploadReportModal').classList.add('flex')" class="bg-blue-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 active:scale-95 transition-all flex items-center gap-2 shadow-sm">
+        <span class="material-symbols-outlined text-xl">add</span>
+        Upload New Document
+    </button>
+</div>
+
 <div class="flex flex-wrap gap-3 mb-10">
 <button class="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-lg text-sm font-medium hover:brightness-95 transition-all">All Records</button>
 <button class="bg-surface-container-low text-tertiary px-6 py-2 rounded-lg text-sm font-medium hover:bg-surface-container-high transition-all">Blood Tests</button>
@@ -158,165 +165,29 @@
 <button class="bg-surface-container-low text-tertiary px-6 py-2 rounded-lg text-sm font-medium hover:bg-surface-container-high transition-all">Physical Exams</button>
 </div>
 <!-- Bento Grid of Reports -->
+
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-<!-- Large Feature Card: Latest Report -->
-<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl p-8 shadow-[0_32px_64px_rgba(0,72,141,0.06)] relative overflow-hidden group">
-<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container opacity-20 rounded-bl-full group-hover:scale-110 transition-transform duration-500"></div>
-<div class="relative z-10">
-<div class="flex justify-between items-start mb-12">
-<div>
-<span class="label-md bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full mb-4 inline-block">MOST RECENT</span>
-<h2 class="headline-md mb-1">Comprehensive Metabolic Panel</h2>
-<p class="text-tertiary body-md">Blood Chemistry &amp; Electrolytes</p>
-</div>
-<div class="text-right">
-<p class="title-lg font-semibold text-primary">OCT 14, 2023</p>
-<p class="label-md text-tertiary">10:45 AM</p>
-</div>
-</div>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-<div class="space-y-1">
-<p class="label-md text-tertiary">PHYSICIAN</p>
-<p class="body-md font-semibold">Dr. Alistair Thorne</p>
-</div>
-<div class="space-y-1">
-<p class="label-md text-tertiary">FACILITY</p>
-<p class="body-md font-semibold">Central Wing</p>
-</div>
-<div class="space-y-1">
-<p class="label-md text-tertiary">STATUS</p>
-<span class="inline-flex items-center text-secondary font-semibold gap-1 text-sm">
-<span class="w-2 h-2 rounded-full bg-secondary"></span> Verified
-                                </span>
-</div>
-<div class="space-y-1">
-<p class="label-md text-tertiary">PAGES</p>
-<p class="body-md font-semibold">12 PDF Pages</p>
-</div>
-</div>
-<div class="flex gap-4">
-<button class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-3 rounded-lg font-medium flex items-center gap-2 hover:shadow-lg transition-all active:scale-95">
-<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
-                                View Online
-                            </button>
-<button class="outline outline-1 outline-outline-variant/15 text-primary px-8 py-3 rounded-lg font-medium hover:bg-surface-container-low transition-all">
-<span class="material-symbols-outlined text-lg inline-block align-middle mr-2" data-icon="download">download</span>
-                                Download PDF
-                            </button>
-</div>
-</div>
-</div>
-<!-- Secondary Metric Card -->
-<div class="bg-surface-container-high rounded-xl p-8 flex flex-col justify-between border-none">
-<div>
-<span class="material-symbols-outlined text-primary text-4xl mb-4" data-icon="health_and_safety">health_and_safety</span>
-<h3 class="headline-md text-xl mb-4">Health Summary</h3>
-<p class="body-md text-tertiary leading-relaxed">Your biometric trends indicate a 4% improvement in cardiovascular efficiency since July.</p>
-</div>
-<div class="mt-8">
-<div class="h-24 w-full flex items-end gap-1">
-<div class="w-1/6 bg-primary/20 h-1/2 rounded-t-sm"></div>
-<div class="w-1/6 bg-primary/30 h-2/3 rounded-t-sm"></div>
-<div class="w-1/6 bg-primary/40 h-1/3 rounded-t-sm"></div>
-<div class="w-1/6 bg-primary/60 h-4/5 rounded-t-sm"></div>
-<div class="w-1/6 bg-primary/80 h-3/4 rounded-t-sm"></div>
-<div class="w-1/6 bg-primary h-full rounded-t-sm"></div>
-</div>
-<p class="label-md text-center mt-4 text-tertiary">VITALITY SPARKLINE (6 MONTHS)</p>
-</div>
-</div>
-<!-- List of Historical Reports (Card List Pattern) -->
-<div class="lg:col-span-3 space-y-4 mt-8">
-<h3 class="title-lg font-headline mb-6">Historical Archive</h3>
-<!-- Report Item 1 -->
-<div class="bg-surface-container-lowest p-6 rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-surface-container-low transition-colors group">
-<div class="flex items-center gap-6">
-<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="radiology">radiology</span>
-</div>
-<div>
-<h4 class="font-semibold text-lg">Chest X-Ray (AP/Lateral View)</h4>
-<p class="text-tertiary text-sm">Diagnostic Imaging • Dr. Elena Rodriguez</p>
-</div>
-</div>
-<div class="flex items-center gap-12">
-<div class="text-right hidden md:block">
-<p class="font-medium">SEP 12, 2023</p>
-<p class="text-xs text-tertiary uppercase tracking-wider">Reference: #8829-X</p>
-</div>
-<div class="flex gap-2">
-<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all active:scale-90" title="Quick View">
-<span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
-</button>
-<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all active:scale-90" title="Download">
-<span class="material-symbols-outlined" data-icon="download">download</span>
-</button>
-<button class="p-2 hover:bg-surface-variant rounded-lg text-tertiary transition-all active:scale-90">
-<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Report Item 2 -->
-<div class="bg-surface-container-low p-6 rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-surface-container-lowest transition-colors group">
-<div class="flex items-center gap-6">
-<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="stethoscope">stethoscope</span>
-</div>
-<div>
-<h4 class="font-semibold text-lg">Annual Physical Assessment</h4>
-<p class="text-tertiary text-sm">Routine Exam • Dr. Marcus Chen</p>
-</div>
-</div>
-<div class="flex items-center gap-12">
-<div class="text-right hidden md:block">
-<p class="font-medium">AUG 05, 2023</p>
-<p class="text-xs text-tertiary uppercase tracking-wider">Reference: #4401-P</p>
-</div>
-<div class="flex gap-2">
-<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all" title="Quick View">
-<span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
-</button>
-<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all" title="Download">
-<span class="material-symbols-outlined" data-icon="download">download</span>
-</button>
-<button class="p-2 hover:bg-surface-variant rounded-lg text-tertiary transition-all">
-<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Report Item 3 -->
-<div class="bg-surface-container-lowest p-6 rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-surface-container-low transition-colors group">
-<div class="flex items-center gap-6">
-<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
-</div>
-<div>
-<h4 class="font-semibold text-lg">Lipid Panel &amp; Glucose</h4>
-<p class="text-tertiary text-sm">Pathology • Dr. Alistair Thorne</p>
-</div>
-</div>
-<div class="flex items-center gap-12">
-<div class="text-right hidden md:block">
-<p class="font-medium">JUN 18, 2023</p>
-<p class="text-xs text-tertiary uppercase tracking-wider">Reference: #3312-L</p>
-</div>
-<div class="flex gap-2">
-<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all" title="Quick View">
-<span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
-</button>
-<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all" title="Download">
-<span class="material-symbols-outlined" data-icon="download">download</span>
-</button>
-<button class="p-2 hover:bg-surface-variant rounded-lg text-tertiary transition-all">
-<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-<!-- Empty State/Footer Action -->
+{% for report in reports %}
+    <div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm relative overflow-hidden group border border-outline-variant/15 flex flex-col justify-between hover:shadow-lg transition-all">
+        <div>
+            <div class="flex justify-between items-start mb-6">
+                <span class="material-symbols-outlined text-4xl text-primary/20 group-hover:text-primary transition-colors" data-icon="description">description</span>
+                <span class="text-xs font-bold uppercase tracking-widest text-tertiary">{{ report.date }}</span>
+            </div>
+            <h3 class="title-lg font-headline text-on-surface mb-2">{{ report.title }}</h3>
+            <p class="body-md text-tertiary mb-6">{{ report.description }}</p>
+        </div>
+        <div class="flex gap-2">
+            <button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all active:scale-90" title="Quick View">
+                <span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+            </button>
+            <button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all active:scale-90" title="Download">
+                <span class="material-symbols-outlined" data-icon="download">download</span>
+            </button>
+        </div>
+    </div>
+{% endfor %}
+
 <div class="lg:col-span-3 py-16 text-center border-t border-dashed border-outline-variant/30 mt-8">
 <span class="material-symbols-outlined text-outline text-5xl mb-4" data-icon="history">history</span>
 <p class="body-md text-tertiary">Viewing records from the last 24 months. For older archives, please contact Medical Records Dept.</p>
@@ -327,4 +198,31 @@
 </div>
 </main>
 </div>
+
+<!-- Upload Report Modal -->
+<div id="uploadReportModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden items-center justify-center">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden animate-fade-in-up">
+        <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+            <h3 class="text-lg font-bold text-slate-800 font-headline">Upload New Report</h3>
+            <button onclick="document.getElementById('uploadReportModal').classList.add('hidden'); document.getElementById('uploadReportModal').classList.remove('flex')" class="text-slate-400 hover:text-slate-600 transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <form action="{{ url_for('reports') }}" method="POST" class="p-6 space-y-4">
+            <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Report Title</label>
+                <input type="text" name="title" required class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Description</label>
+                <textarea name="description" rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"></textarea>
+            </div>
+            <div class="pt-4 flex gap-3">
+                <button type="button" onclick="document.getElementById('uploadReportModal').classList.add('hidden'); document.getElementById('uploadReportModal').classList.remove('flex')" class="flex-1 px-4 py-2.5 border border-slate-200 text-slate-600 rounded-lg text-sm font-semibold hover:bg-slate-50 transition-colors">Cancel</button>
+                <button type="submit" class="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30">Upload</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 </body></html>
