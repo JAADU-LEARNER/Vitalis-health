@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pharmacy &amp; Medications | The Clinical Atelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#d6e3ff",
+              "on-secondary": "#ffffff",
+              "primary-container": "#005fb8",
+              "primary-fixed-dim": "#a8c8ff",
+              "surface-container": "#eceef0",
+              "secondary-fixed-dim": "#85d6ba",
+              "on-primary-container": "#cadcff",
+              "on-surface-variant": "#424752",
+              "on-tertiary": "#ffffff",
+              "error": "#ba1a1a",
+              "secondary-container": "#a1f3d6",
+              "on-error-container": "#93000a",
+              "on-surface": "#191c1e",
+              "tertiary-container": "#576260",
+              "on-primary-fixed-variant": "#00468b",
+              "on-secondary-container": "#18715a",
+              "surface": "#f7f9fb",
+              "on-secondary-fixed-variant": "#00513f",
+              "surface-variant": "#e0e3e5",
+              "on-tertiary-fixed-variant": "#3e4947",
+              "surface-container-high": "#e6e8ea",
+              "primary": "#00488d",
+              "surface-container-lowest": "#ffffff",
+              "inverse-primary": "#a8c8ff",
+              "inverse-on-surface": "#eff1f3",
+              "tertiary-fixed-dim": "#bdc9c6",
+              "on-primary": "#ffffff",
+              "on-tertiary-container": "#d1ddda",
+              "error-container": "#ffdad6",
+              "surface-container-highest": "#e0e3e5",
+              "on-primary-fixed": "#001b3d",
+              "secondary-fixed": "#a1f3d6",
+              "on-tertiary-fixed": "#131e1c",
+              "on-error": "#ffffff",
+              "outline-variant": "#c2c6d4",
+              "secondary": "#0c6b55",
+              "outline": "#727783",
+              "tertiary-fixed": "#d9e5e2",
+              "on-background": "#191c1e",
+              "tertiary": "#3f4a48",
+              "on-secondary-fixed": "#002118",
+              "background": "#f7f9fb",
+              "surface-tint": "#005db5",
+              "surface-dim": "#d8dadc",
+              "surface-container-low": "#f2f4f6",
+              "inverse-surface": "#2d3133",
+              "surface-bright": "#f7f9fb"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl docked full-width top-0 sticky z-50 shadow-[0_32px_64px_rgba(0,72,141,0.06)] flex justify-between items-center px-8 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-light tracking-tighter text-blue-900 dark:text-blue-100 font-headline">The Clinical Atelier</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-slate-500 dark:text-slate-400 font-manrope text-sm tracking-tight hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors px-3 py-2 rounded-lg" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 font-manrope text-sm tracking-tight hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors px-3 py-2 rounded-lg" href="#">Appointments</a>
+<a class="text-blue-700 dark:text-blue-400 font-semibold font-manrope text-sm tracking-tight hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors px-3 py-2 rounded-lg" href="#">Pharmacy</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="bg-surface-container-highest border-none rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all w-64" placeholder="Search medications..." type="text"/>
+</div>
+<button class="p-2 rounded-full hover:bg-slate-50 active:scale-95 duration-200 text-slate-500">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant/20">
+<img alt="User Medical Profile" data-alt="Professional headshot of a female doctor in medical attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl1mAocHVXYQgURblGoi-RuWkboVeAoVDcN-ss_g-CuTKsd57oYoohrnED6f2Knl-U46IAzT-lsUvqrBmyJo2m0XnGXKSJ7GcM2hIjEvH5-XyyB-Q0Ru27IxG7AQa8B1WnTVlodmjfQt4O1GK1tuMmSFu12PGpXlVG8ywiRTkO-w9XnEfU5STk0UK-9lq3bkbZQiZdMQkx1YwQRkFCA5qwQ9YrgQSUUpJQc7OzN4ZBEOFEUR5vJgvu3LCkL8jAag5fellYVKC9bn8e"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Desktop) -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 flex flex-col py-8 bg-slate-50 dark:bg-slate-950 hidden md:flex border-r-0">
+<div class="px-8 mb-8">
+<h3 class="font-inter text-[13px] font-medium uppercase tracking-wider text-slate-500">Patient Care</h3>
+<p class="text-[11px] text-secondary font-semibold uppercase tracking-widest mt-1">Verified Status</p>
+</div>
+<nav class="flex-1 space-y-2 px-4">
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer ease-in-out font-inter text-[13px] font-medium uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer ease-in-out font-inter text-[13px] font-medium uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span>Appointments</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer ease-in-out font-inter text-[13px] font-medium uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Medical Reports</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-blue-800 dark:text-blue-300 font-bold border-r-4 border-blue-600 dark:border-blue-400 pr-4 font-inter text-[13px] uppercase tracking-wider bg-primary-fixed/20 rounded-l-lg transition-transform duration-300 cursor-pointer ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span>Pharmacy</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer ease-in-out font-inter text-[13px] font-medium uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span>
+<span>Doctor Reviews</span>
+</a>
+</nav>
+<div class="mt-auto px-4 space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 font-inter text-[13px] font-medium uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 font-inter text-[13px] font-medium uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="md:ml-64 min-h-screen p-8 lg:p-16 space-y-16">
+<!-- Header Section -->
+<header class="max-w-6xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="space-y-4">
+<span class="label-md text-secondary font-semibold bg-secondary-container px-3 py-1 rounded-full">Active Prescriptions</span>
+<h1 class="display-lg text-on-surface font-headline leading-none">Your Atelier Apothecary</h1>
+<p class="body-md text-tertiary max-w-xl">Manage your clinical regime with editorial precision. Track dosages, schedule refills, and locate nearby dispensing centers.</p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-6 py-3 bg-surface-container-highest text-on-surface font-medium rounded-xl hover:bg-surface-container-high transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[20px]" data-icon="history">history</span>
+<span class="label-md">Past Orders</span>
+</button>
+<button class="flex items-center gap-2 px-6 py-3 bg-primary text-on-primary font-medium rounded-xl hover:bg-primary-container transition-all active:scale-95 duration-200 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+<span class="label-md">Upload Script</span>
+</button>
+</div>
+</header>
+<!-- Bento Grid: Medications & Schedule -->
+<section class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Daily Schedule (The Vitality Sparkline Logic applied to a Timeline) -->
+<div class="lg:col-span-4 bg-surface-container-low rounded-[2rem] p-8 flex flex-col gap-8 shadow-sm">
+<div class="flex items-center justify-between">
+<h2 class="headline-md font-headline text-on-surface">Today's Schedule</h2>
+<span class="material-symbols-outlined text-primary" data-icon="event">calendar_month</span>
+</div>
+<div class="space-y-6">
+<div class="relative pl-8 border-l-2 border-primary-fixed">
+<div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary border-4 border-surface-container-low shadow-[0_0_12px_rgba(0,72,141,0.3)]"></div>
+<div class="space-y-1">
+<span class="label-md text-tertiary">08:00 AM</span>
+<p class="title-lg font-semibold text-on-surface">Metformin HCL</p>
+<p class="body-md text-tertiary">Take with breakfast</p>
+</div>
+</div>
+<div class="relative pl-8 border-l-2 border-primary-fixed/30">
+<div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-200 border-4 border-surface-container-low"></div>
+<div class="space-y-1">
+<span class="label-md text-tertiary">01:30 PM</span>
+<p class="title-lg font-semibold text-on-surface-variant">Atorvastatin</p>
+<p class="body-md text-tertiary">Post-lunch dose</p>
+</div>
+</div>
+<div class="relative pl-8 border-l-2 border-primary-fixed/30">
+<div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-200 border-4 border-surface-container-low"></div>
+<div class="space-y-1">
+<span class="label-md text-tertiary">09:00 PM</span>
+<p class="title-lg font-semibold text-on-surface-variant">Lisinopril</p>
+<p class="body-md text-tertiary">Before sleeping</p>
+</div>
+</div>
+</div>
+<div class="mt-auto bg-primary-fixed/30 p-6 rounded-2xl border border-primary-fixed/20">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+<span class="label-md font-bold tracking-wider">ADHERENCE TIP</span>
+</div>
+<p class="body-md mt-2 text-on-primary-fixed-variant">Patients who take Metformin consistently see 15% better outcomes. Stay the course.</p>
+</div>
+</div>
+<!-- Active Prescriptions List -->
+<div class="lg:col-span-8 space-y-8">
+<div class="flex items-center justify-between px-2">
+<h2 class="headline-md font-headline text-on-surface">Active Prescriptions</h2>
+<button class="text-primary label-md font-bold flex items-center gap-1 hover:underline">
+                        VIEW ALL <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<!-- Prescription Card 1 -->
+<div class="bg-surface-container-lowest rounded-[2rem] p-8 group hover:shadow-[0_32px_64px_rgba(0,72,141,0.08)] transition-all duration-500 border border-transparent hover:border-outline-variant/10">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex gap-6">
+<div class="w-16 h-16 rounded-2xl bg-secondary-container flex items-center justify-center text-on-secondary-container shrink-0">
+<span class="material-symbols-outlined text-3xl" data-icon="pill">pill</span>
+</div>
+<div class="space-y-1">
+<h3 class="title-lg font-headline font-bold text-on-surface">Metformin Hydrochloride</h3>
+<div class="flex flex-wrap gap-x-4 gap-y-1 items-center">
+<span class="body-md text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">medical_information</span>
+                                        Dr. Elena Rossetti
+                                    </span>
+<span class="body-md text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                        Twice Daily
+                                    </span>
+</div>
+<p class="body-md mt-4 text-on-surface-variant bg-surface-container-low p-4 rounded-xl">
+<span class="font-bold text-primary">Dosage:</span> 500mg Oral Tablet. Take with food to minimize GI side effects.
+                                </p>
+</div>
+</div>
+<div class="flex flex-col gap-3 min-w-[160px]">
+<button class="w-full py-3 px-6 rounded-xl bg-primary text-on-primary label-md font-bold hover:shadow-lg transition-shadow active:scale-95 duration-200">
+                                REORDER REFILL
+                            </button>
+<p class="text-center text-[11px] text-tertiary uppercase tracking-widest">2 Refills Remaining</p>
+</div>
+</div>
+</div>
+<!-- Prescription Card 2 -->
+<div class="bg-surface-container-lowest rounded-[2rem] p-8 group hover:shadow-[0_32px_64px_rgba(0,72,141,0.08)] transition-all duration-500 border border-transparent hover:border-outline-variant/10">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex gap-6">
+<div class="w-16 h-16 rounded-2xl bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-3xl" data-icon="medication_liquid">medication_liquid</span>
+</div>
+<div class="space-y-1">
+<h3 class="title-lg font-headline font-bold text-on-surface">Lisinopril (Zestril)</h3>
+<div class="flex flex-wrap gap-x-4 gap-y-1 items-center">
+<span class="body-md text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">medical_information</span>
+                                        Dr. Marcus Thorne
+                                    </span>
+<span class="body-md text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                        Once Daily
+                                    </span>
+</div>
+<p class="body-md mt-4 text-on-surface-variant bg-surface-container-low p-4 rounded-xl">
+<span class="font-bold text-primary">Dosage:</span> 10mg Capsule. Do not take with salt substitutes containing potassium.
+                                </p>
+</div>
+</div>
+<div class="flex flex-col gap-3 min-w-[160px]">
+<button class="w-full py-3 px-6 rounded-xl bg-primary text-on-primary label-md font-bold hover:shadow-lg transition-shadow active:scale-95 duration-200">
+                                REORDER REFILL
+                            </button>
+<p class="text-center text-[11px] text-tertiary uppercase tracking-widest">Refill in 5 Days</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pharmacy Search & Map (Asymmetric Section) -->
+<section class="max-w-6xl mx-auto bg-surface-container-high rounded-[3rem] overflow-hidden flex flex-col lg:flex-row">
+<div class="lg:w-1/2 p-12 lg:p-20 space-y-8">
+<h2 class="display-lg font-headline text-on-surface leading-tight">Locate Your<br/><span class="text-primary italic">Atelier Partner</span></h2>
+<p class="body-md text-tertiary">Our verified pharmacy network ensures availability and clinical standards. Search by medication name or location.</p>
+<div class="space-y-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary" data-icon="local_pharmacy">local_pharmacy</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-2xl pl-12 pr-4 py-4 focus:ring-2 focus:ring-primary transition-all shadow-sm" placeholder="Enter medication name (e.g. Metformin)" type="text"/>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary" data-icon="near_me">near_me</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-2xl pl-12 pr-4 py-4 focus:ring-2 focus:ring-primary transition-all shadow-sm" placeholder="Your Zip Code or City" type="text"/>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-2xl font-bold label-md tracking-widest hover:bg-primary-container transition-all shadow-xl shadow-primary/20">
+                        SEARCH AVAILABILITY
+                    </button>
+</div>
+<div class="space-y-6 pt-4 border-t border-outline-variant/10">
+<div class="flex items-start gap-4 p-4 rounded-2xl hover:bg-surface-container-lowest transition-colors cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container text-[20px]" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Central Atelier Pharmacy</p>
+<p class="body-md text-tertiary">0.8 miles away • <span class="text-secondary font-medium">In Stock</span></p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-2xl hover:bg-surface-container-lowest transition-colors cursor-pointer opacity-60">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-slate-400 text-[20px]" data-icon="location_on">location_on</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Westside Clinical Dispense</p>
+<p class="body-md text-tertiary">2.4 miles away • <span class="text-error font-medium">Low Stock</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2 min-h-[400px] relative">
+<img alt="Map pattern" class="absolute inset-0 w-full h-full object-cover grayscale opacity-20" data-alt="Abstract dark geometric pattern representing a map layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBflBDNpwC8OCrGGSFslok3uTPPe_fRD6qyA6Uab6yvoku18R-sh2TWf1ANwxXcCpMyAwoZFjFamBb2di5zYLXYfhDAEFVhq951PAh_UTsA4ih_tBD8nJ967rEqKZbdLFf5ne4DE6mtulirCDq2QPPXUdzSlsCkkBR4p9w5xx1TOuYgrKcWboDrUSfUp2OEO_-QLVECq9M-c-OlxP9VkVa24hiMDMojZMsWpvpE-EgBIi_j35F-7OC7EtNd-_ZUDBctlnU-Nx_1bALE"/>
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary-container/30"></div>
+<div class="absolute inset-0 flex items-center justify-center p-12">
+<div class="w-full h-full bg-white/20 backdrop-blur-md rounded-3xl overflow-hidden shadow-2xl border border-white/30 relative">
+<img class="w-full h-full object-cover" data-alt="Modern interactive map interface showing clinical locations in a city grid" data-location="Chicago" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaT_UFWFrJ3EH2BdMzpr31d32dbK48ghyaqqVC_TtvRwMGM23gYzIZgfFV2Er_gwFhnH021FJwynometDUAHtuSGfyQu8TaywHCbYOmrPzh6RRmBN-3bppSIqnzQhH8oAuQr33tetdDsrBzeElLpcUnYBR-94rqiyXtljmcxWMaL3iWjVb-VTf1Ph3V3Y6nXLtpp-e434lpfKP56K9aZH3i7wHU3dPP1MGIXCWrmqoYJbgdsi7zu1DZH6UKf_oEocQAPdErK8-TvQL"/>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="w-12 h-12 bg-primary rounded-full border-4 border-white shadow-2xl flex items-center justify-center animate-pulse">
+<span class="material-symbols-outlined text-white" data-icon="medical_services">medical_services</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl flex justify-around items-center h-16 px-4 z-50 border-t-0 shadow-[0_-8px_32px_rgba(0,0,0,0.05)]">
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" data-icon="medical_services" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter">Pharmacy</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter">Dates</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter">Me</span>
+</button>
+</nav>
+</body></html>
