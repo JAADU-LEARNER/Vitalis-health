@@ -230,8 +230,8 @@
 <p class="text-body-md text-tertiary">{{ appointment.specialty }} • {{ appointment.type }}</p>
 </div>
 <div class="text-right">
-<p class="text-title-lg font-headline font-semibold text-on-surface">{{ appointment.date_time.split(',')[0] }}</p>
-<p class="text-body-md text-tertiary">{{ appointment.date_time.split(',')[1] if ',' in appointment.date_time else appointment.date_time }}</p>
+<p class="text-title-lg font-headline font-semibold text-on-surface">{{ appointment.date_time | format_datetime }}</p>
+<p class="text-body-md text-tertiary">{{ appointment.date_time | format_time }}</p>
 </div>
 <button class="ml-8 material-symbols-outlined text-outline-variant hover:text-primary transition-colors">chevron_right</button>
 </div>
