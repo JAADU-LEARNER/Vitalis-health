@@ -30,6 +30,7 @@ def init_db():
             date_time TEXT NOT NULL,
             status TEXT,
             type TEXT,
+            wait_time INTEGER,
             FOREIGN KEY (user_id) REFERENCES Users(id)
         )
     ''')
@@ -55,6 +56,8 @@ def init_db():
             name TEXT NOT NULL,
             dosage TEXT,
             instructions TEXT,
+            frequency TEXT,
+            reminder_time TEXT,
             FOREIGN KEY (user_id) REFERENCES Users(id)
         )
     ''')
@@ -116,13 +119,13 @@ def init_db():
     user_id = cursor.lastrowid
 
     # Check if there's data in Appointments before inserting
-    cursor.execute("INSERT INTO Appointments (user_id, doctor_name, specialty, clinic, date_time, status, type) VALUES (?, 'Dr. Elena Rostova', 'Cardiology', 'Diagnostic Center A', 'Today, 14:30', 'Scheduled', 'Virtual Consultation')", (user_id,))
-    cursor.execute("INSERT INTO Appointments (user_id, doctor_name, specialty, clinic, date_time, status, type) VALUES (?, 'Dr. Marcus Thorne', 'Dermatology', 'Skin Health Institute', 'OCT 12, 10:00 AM', 'Completed', 'Video Consultation')", (user_id,))
+    cursor.execute("INSERT INTO Appointments (user_id, doctor_name, specialty, clinic, date_time, status, type, wait_time) VALUES (?, 'Dr. Elena Rostova', 'Cardiology', 'Diagnostic Center A', '2026-10-24T14:30', 'Scheduled', 'Virtual Consultation', 15)", (user_id,))
+    cursor.execute("INSERT INTO Appointments (user_id, doctor_name, specialty, clinic, date_time, status, type, wait_time) VALUES (?, 'Dr. Marcus Thorne', 'Dermatology', 'Skin Health Institute', '2026-10-12T10:00', 'Completed', 'Video Consultation', 0)", (user_id,))
 
     # Add other seed data...
     cursor.execute("INSERT INTO MedicalReports (user_id, title, date, description) VALUES (?, 'Lab Results - Fasting Bloodwork', '2023-10-01', 'Normal values across all metrics.')", (user_id,))
 
-    cursor.execute("INSERT INTO PharmacyMedications (user_id, name, dosage, instructions) VALUES (?, 'Vitamin D3', '1000 IU', 'Take with breakfast')", (user_id,))
+    cursor.execute("INSERT INTO PharmacyMedications (user_id, name, dosage, instructions, frequency, reminder_time) VALUES (?, 'Vitamin D3', '1000 IU', 'Take with breakfast', 'Daily', '08:00')", (user_id,))
 
     cursor.execute("INSERT INTO Notifications (user_id, title, message, time) VALUES (?, 'Vitamin D3', 'Take with breakfast', '8:00 AM')", (user_id,))
 

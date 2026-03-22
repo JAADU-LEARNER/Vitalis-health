@@ -189,8 +189,12 @@
 </div>
 </div>
 <div>
-<p class="text-title-lg font-semibold">{{ next_appointment.date_time }}</p>
+<p class="text-title-lg font-semibold">{{ next_appointment.date_time | format_datetime }}</p>
 <p class="text-body-md text-slate-400">{{ next_appointment.type }}</p>
+<p class="text-label-md font-bold mt-2 {% if next_appointment.wait_time and next_appointment.wait_time > 20 %}text-red-500{% else %}text-emerald-600{% endif %}">
+    <span class="material-symbols-outlined text-[14px] align-middle">hourglass_empty</span>
+    Est. Wait Time: {{ next_appointment.wait_time if next_appointment.wait_time else '0' }} mins
+</p>
 </div>
 </div>
 {% else %}
@@ -227,8 +231,8 @@
 {% for appointment in appointments %}
 <div class="flex items-center gap-6 p-6 bg-white rounded-xl group hover:shadow-[0_16px_32px_rgba(0,0,0,0.04)] transition-all">
 <div class="w-16 h-16 rounded-xl bg-slate-50 flex flex-col items-center justify-center text-center">
-<span class="text-xs font-bold text-slate-400 uppercase tracking-tighter">{{ appointment.date_time[:3] }}</span>
-<span class="text-xl font-bold text-on-surface">{{ appointment.date_time[4:6] }}</span>
+<span class="text-xs font-bold text-slate-400 uppercase tracking-tighter">{{ appointment.date_time | format_month }}</span>
+<span class="text-xl font-bold text-on-surface">{{ appointment.date_time | format_day }}</span>
 </div>
 <div class="flex-1 grid grid-cols-1 md:grid-cols-3 items-center gap-4">
 <div>
@@ -237,7 +241,7 @@
 </div>
 <div>
 <p class="text-body-md text-tertiary">{{ appointment.type }}</p>
-<p class="text-label-md font-medium text-slate-400">{{ appointment.date_time.split(',')[1] if ',' in appointment.date_time else appointment.date_time }}</p>
+<p class="text-label-md font-medium text-slate-400">{{ appointment.date_time | format_time }}</p>
 </div>
 <div class="flex md:justify-end gap-3">
 {% if appointment.status == 'Cancelled' %}
@@ -297,7 +301,7 @@
             </div>
             <div>
                 <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Date & Time</label>
-                <input type="text" name="date_time" required placeholder="e.g. OCT 24, 10:00 AM" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
+                <input type="datetime-local" name="date_time" required class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all">
             </div>
             <div>
                 <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Consultation Type</label>

@@ -1,4 +1,6 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 import sqlite3
@@ -87,13 +89,22 @@ def appointments():
     user_id = session['user_id']
     conn = get_db_connection()
     if request.method == 'POST':
+        import random
         doctor_name = request.form['doctor_name']
         specialty = request.form['specialty']
         clinic = request.form['clinic']
         date_time = request.form['date_time']
         appt_type = request.form['type']
-        conn.execute('INSERT INTO Appointments (user_id, doctor_name, specialty, clinic, date_time, status, type) VALUES (?, ?, ?, ?, ?, ?, ?)',
-                     (user_id, doctor_name, specialty, clinic, date_time, 'Scheduled', appt_type))
+
+        # Simulate wait time calculation based on date/time logic
+        wait_time = random.randint(5, 45) # Random wait time between 5 and 45 minutes
+
+        conn.execute('INSERT INTO Appointments (user_id, doctor_name, specialty, clinic, date_time, status, type, wait_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+                     (user_id, doctor_name, specialty, clinic, date_time, 'Scheduled', appt_type, wait_time))
+
+        # Add a notification
+        conn.execute('INSERT INTO Notifications (user_id, title, message, time) VALUES (?, ?, ?, ?)',
+                     (user_id, 'Upcoming Appointment', f"Appointment scheduled with {doctor_name} on {date_time}", 'Just now'))
         conn.commit()
         return redirect(url_for('appointments'))
 
@@ -102,6 +113,47 @@ def appointments():
     appointments = conn.execute('SELECT * FROM Appointments WHERE user_id = ? ORDER BY id DESC', (user_id,)).fetchall()
     conn.close()
     return render_template('appointments.html', user=user, next_appointment=next_appointment, appointments=appointments)
+
+UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploads')
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+import datetime
+
+@app.template_filter('format_datetime')
+def format_datetime(value):
+    try:
+        # datetime-local format: 2026-10-24T14:30
+        dt = datetime.datetime.strptime(value, '%Y-%m-%dT%H:%M')
+        return dt.strftime('%b %d, %I:%M %p').upper()
+    except:
+        return value
+
+@app.template_filter('format_month')
+def format_month(value):
+    try:
+        dt = datetime.datetime.strptime(value, '%Y-%m-%dT%H:%M')
+        return dt.strftime('%b').upper()
+    except:
+        return value[:3]
+
+@app.template_filter('format_day')
+def format_day(value):
+    try:
+        dt = datetime.datetime.strptime(value, '%Y-%m-%dT%H:%M')
+        return dt.strftime('%d')
+    except:
+        return value[4:6]
+
+@app.template_filter('format_time')
+def format_time(value):
+    try:
+        dt = datetime.datetime.strptime(value, '%Y-%m-%dT%H:%M')
+        return dt.strftime('%I:%M %p')
+    except:
+        return value.split(',')[1] if ',' in value else value
+
+
 
 @app.route('/reports', methods=('GET', 'POST'))
 @login_required
@@ -112,8 +164,19 @@ def reports():
         title = request.form['title']
         description = request.form['description']
         date = datetime.datetime.now().strftime("%Y-%m-%d")
-        conn.execute('INSERT INTO MedicalReports (user_id, title, date, description) VALUES (?, ?, ?, ?)',
-                     (user_id, title, date, description))
+
+        file = request.files.get('file')
+        file_path = None
+        if file and file.filename != '':
+            filename = secure_filename(file.filename)
+            # Make filename unique per user to prevent overrides
+            unique_filename = f"u{user_id}_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}_{filename}"
+            save_path = os.path.join(app.config['UPLOAD_FOLDER'], unique_filename)
+            file.save(save_path)
+            file_path = f"uploads/{unique_filename}"
+
+        conn.execute('INSERT INTO MedicalReports (user_id, title, date, description, file_path) VALUES (?, ?, ?, ?, ?)',
+                     (user_id, title, date, description, file_path))
         conn.commit()
         return redirect(url_for('reports'))
 
@@ -131,8 +194,15 @@ def pharmacy():
         name = request.form['name']
         dosage = request.form['dosage']
         instructions = request.form['instructions']
-        conn.execute('INSERT INTO PharmacyMedications (user_id, name, dosage, instructions) VALUES (?, ?, ?, ?)',
-                     (user_id, name, dosage, instructions))
+        frequency = request.form.get('frequency', 'Daily')
+        reminder_time = request.form.get('reminder_time', '')
+
+        conn.execute('INSERT INTO PharmacyMedications (user_id, name, dosage, instructions, frequency, reminder_time) VALUES (?, ?, ?, ?, ?, ?)',
+                     (user_id, name, dosage, instructions, frequency, reminder_time))
+
+        # Add a notification
+        conn.execute('INSERT INTO Notifications (user_id, title, message, time) VALUES (?, ?, ?, ?)',
+                     (user_id, 'Medicine Reminder Created', f"Reminder set for {name} ({dosage}) {frequency} at {reminder_time}", 'Just now'))
         conn.commit()
         return redirect(url_for('pharmacy'))
 
