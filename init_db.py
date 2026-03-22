@@ -1,7 +1,11 @@
 import sqlite3
 import os
+from werkzeug.security import generate_password_hash
 
 def init_db():
+    if os.path.exists('/app/health.db'):
+        os.remove('/app/health.db')
+
     conn = sqlite3.connect('/app/health.db')
     cursor = conn.cursor()
 
@@ -10,7 +14,8 @@ def init_db():
         CREATE TABLE IF NOT EXISTS Users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
-            email TEXT NOT NULL UNIQUE
+            email TEXT NOT NULL UNIQUE,
+            password TEXT NOT NULL
         )
     ''')
 
@@ -102,29 +107,26 @@ def init_db():
     ''')
 
     # Insert sample seed data
-    cursor.execute("INSERT OR IGNORE INTO Users (id, name, email) VALUES (1, 'Julian', 'julian@example.com')")
+    hashed_pw = generate_password_hash("password123")
+    cursor.execute("INSERT INTO Users (name, email, password) VALUES (?, ?, ?)",
+                   ("Julian", "julian@example.com", hashed_pw))
+
+    user_id = cursor.lastrowid
 
     # Check if there's data in Appointments before inserting
-    cursor.execute("SELECT COUNT(*) FROM Appointments")
-    if cursor.fetchone()[0] == 0:
-        cursor.execute("INSERT INTO Appointments (user_id, doctor_name, specialty, clinic, date_time, status, type) VALUES (1, 'Dr. Elena Rostova', 'Cardiology', 'Diagnostic Center A', 'Today, 14:30', 'Scheduled', 'Virtual Consultation')")
-        cursor.execute("INSERT INTO Appointments (user_id, doctor_name, specialty, clinic, date_time, status, type) VALUES (1, 'Dr. Marcus Thorne', 'Dermatology', 'Skin Health Institute', 'OCT 12, 10:00 AM', 'Completed', 'Video Consultation')")
+    cursor.execute("INSERT INTO Appointments (user_id, doctor_name, specialty, clinic, date_time, status, type) VALUES (?, 'Dr. Elena Rostova', 'Cardiology', 'Diagnostic Center A', 'Today, 14:30', 'Scheduled', 'Virtual Consultation')", (user_id,))
+    cursor.execute("INSERT INTO Appointments (user_id, doctor_name, specialty, clinic, date_time, status, type) VALUES (?, 'Dr. Marcus Thorne', 'Dermatology', 'Skin Health Institute', 'OCT 12, 10:00 AM', 'Completed', 'Video Consultation')", (user_id,))
 
     # Add other seed data...
-    cursor.execute("SELECT COUNT(*) FROM MedicalReports")
-    if cursor.fetchone()[0] == 0:
-        cursor.execute("INSERT INTO MedicalReports (user_id, title, date, description) VALUES (1, 'Lab Results - Fasting Bloodwork', '2023-10-01', 'Normal values across all metrics.')")
+    cursor.execute("INSERT INTO MedicalReports (user_id, title, date, description) VALUES (?, 'Lab Results - Fasting Bloodwork', '2023-10-01', 'Normal values across all metrics.')", (user_id,))
 
-    cursor.execute("SELECT COUNT(*) FROM PharmacyMedications")
-    if cursor.fetchone()[0] == 0:
-         cursor.execute("INSERT INTO PharmacyMedications (name, dosage, instructions) VALUES ('Vitamin D3', '1000 IU', 'Take with breakfast')")
+    cursor.execute("INSERT INTO PharmacyMedications (name, dosage, instructions) VALUES ('Vitamin D3', '1000 IU', 'Take with breakfast')")
 
-    cursor.execute("SELECT COUNT(*) FROM Notifications")
-    if cursor.fetchone()[0] == 0:
-        cursor.execute("INSERT INTO Notifications (user_id, title, message, time) VALUES (1, 'Vitamin D3', 'Take with breakfast', '8:00 AM')")
+    cursor.execute("INSERT INTO Notifications (user_id, title, message, time) VALUES (?, 'Vitamin D3', 'Take with breakfast', '8:00 AM')", (user_id,))
 
     conn.commit()
     conn.close()
 
 if __name__ == '__main__':
     init_db()
+    print("Database initialized successfully.")

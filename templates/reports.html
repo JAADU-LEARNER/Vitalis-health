@@ -111,33 +111,33 @@
 <p class="text-[11px] text-slate-500 uppercase tracking-widest mt-1">Verified Status</p>
 </div>
 <nav class="flex-1 space-y-2">
-<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer" href="#">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer" href="{{ url_for('dashboard') }}">
 <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Dashboard</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer" href="#">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer" href="{{ url_for('appointments') }}">
 <span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Appointments</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-2 text-blue-800 font-bold border-r-4 border-blue-600 pr-4 translate-x-1" href="#">
+<a class="flex items-center gap-3 px-3 py-2 text-blue-800 font-bold border-r-4 border-blue-600 pr-4 translate-x-1" href="{{ url_for('reports') }}">
 <span class="material-symbols-outlined" data-icon="description">description</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Medical Reports</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer" href="#">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer" href="{{ url_for('pharmacy') }}">
 <span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Pharmacy</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer" href="#">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer" href="{{ url_for('reviews') }}">
 <span class="material-symbols-outlined" data-icon="rate_review">rate_review</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Doctor Reviews</span>
 </a>
 </nav>
 <div class="pt-8 border-t border-slate-200 space-y-2">
-<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 transition-colors" href="#">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 transition-colors" href="{{ url_for('settings') }}">
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Settings</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-error transition-colors" href="#">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-error transition-colors" href="{{ url_for('logout') }}">
 <span class="material-symbols-outlined" data-icon="logout">logout</span>
 <span class="font-inter text-[13px] font-medium uppercase tracking-wider">Logout</span>
 </a>
