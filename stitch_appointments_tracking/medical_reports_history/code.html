@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Medical Reports &amp; History | The Clinical Atelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#d6e3ff",
+              "on-secondary": "#ffffff",
+              "primary-container": "#005fb8",
+              "primary-fixed-dim": "#a8c8ff",
+              "surface-container": "#eceef0",
+              "secondary-fixed-dim": "#85d6ba",
+              "on-primary-container": "#cadcff",
+              "on-surface-variant": "#424752",
+              "on-tertiary": "#ffffff",
+              "error": "#ba1a1a",
+              "secondary-container": "#a1f3d6",
+              "on-error-container": "#93000a",
+              "on-surface": "#191c1e",
+              "tertiary-container": "#576260",
+              "on-primary-fixed-variant": "#00468b",
+              "on-secondary-container": "#18715a",
+              "surface": "#f7f9fb",
+              "on-secondary-fixed-variant": "#00513f",
+              "surface-variant": "#e0e3e5",
+              "on-tertiary-fixed-variant": "#3e4947",
+              "surface-container-high": "#e6e8ea",
+              "primary": "#00488d",
+              "surface-container-lowest": "#ffffff",
+              "inverse-primary": "#a8c8ff",
+              "inverse-on-surface": "#eff1f3",
+              "tertiary-fixed-dim": "#bdc9c6",
+              "on-primary": "#ffffff",
+              "on-tertiary-container": "#d1ddda",
+              "error-container": "#ffdad6",
+              "surface-container-highest": "#e0e3e5",
+              "on-primary-fixed": "#001b3d",
+              "secondary-fixed": "#a1f3d6",
+              "on-tertiary-fixed": "#131e1c",
+              "on-error": "#ffffff",
+              "outline-variant": "#c2c6d4",
+              "secondary": "#0c6b55",
+              "outline": "#727783",
+              "tertiary-fixed": "#d9e5e2",
+              "on-background": "#191c1e",
+              "tertiary": "#3f4a48",
+              "on-secondary-fixed": "#002118",
+              "background": "#f7f9fb",
+              "surface-tint": "#005db5",
+              "surface-dim": "#d8dadc",
+              "surface-container-low": "#f2f4f6",
+              "inverse-surface": "#2d3133",
+              "surface-bright": "#f7f9fb"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            shadow-[0_32px_64px_rgba(0,72,141,0.06)];
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed-dim">
+<!-- TopNavBar -->
+<nav class="bg-white/70 backdrop-blur-xl docked full-width top-0 sticky z-50 shadow-[0_32px_64px_rgba(0,72,141,0.06)] flex justify-between items-center px-8 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-light tracking-tighter text-blue-900">The Clinical Atelier</span>
+<div class="hidden md:flex items-center bg-surface-container-highest px-4 py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-body w-64" placeholder="Search medical records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-500 hover:bg-slate-50 transition-colors p-2 rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-slate-500 hover:bg-slate-50 transition-colors p-2 rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden bg-primary-fixed">
+<img alt="User Medical Profile" data-alt="Close up of a professional doctor profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTtieM2n_-LMPzKfNlrplkgXXfVh-4ocbpP5wHglcpCaGHZ4L6MpEY9dRgNlP3w8PKQAiz-NxRNGNx18AbjE-0yO8jkLy9ADTwHkCsXvOUQFwQ6JQQ9ludM3V5LTiFXYnemIY5DMdrcnSxqEfRfcp6aLxkWiVfS6v4yv3IDbKvfAhKsVxTfKVYmJ_K_NL3ZswVmYReHuXOdz-S4J3ILgyz1kKuSKpRTiaeILTFujxIWzFc45wy_qYld7EP-Olg0OPes8_Q1rR2Qpr3"/>
+</div>
+</div>
+</nav>
+<div class="flex">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 flex flex-col py-8 space-y-4 px-6 bg-slate-50 hidden md:flex">
+<div class="mb-6">
+<p class="font-inter text-[13px] font-medium uppercase tracking-wider text-emerald-700">Patient Care</p>
+<p class="text-[11px] text-slate-500 uppercase tracking-widest mt-1">Verified Status</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-inter text-[13px] font-medium uppercase tracking-wider">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-inter text-[13px] font-medium uppercase tracking-wider">Appointments</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-blue-800 font-bold border-r-4 border-blue-600 pr-4 translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-inter text-[13px] font-medium uppercase tracking-wider">Medical Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-inter text-[13px] font-medium uppercase tracking-wider">Pharmacy</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 hover:translate-x-1 transition-transform duration-300 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span>
+<span class="font-inter text-[13px] font-medium uppercase tracking-wider">Doctor Reviews</span>
+</a>
+</nav>
+<div class="pt-8 border-t border-slate-200 space-y-2">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-blue-600 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-inter text-[13px] font-medium uppercase tracking-wider">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-error transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-inter text-[13px] font-medium uppercase tracking-wider">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 md:ml-64 p-8 md:p-12 lg:p-16 max-w-7xl mx-auto">
+<!-- Page Header -->
+<header class="mb-12">
+<h1 class="text-5xl font-headline font-light tracking-tight text-on-surface mb-2">Medical Reports</h1>
+<p class="text-tertiary body-md max-w-2xl">Access your clinical history, laboratory results, and diagnostic imaging archives. All records are verified by the Atelier clinical board.</p>
+</header>
+<!-- Quick Filter Chips -->
+<div class="flex flex-wrap gap-3 mb-10">
+<button class="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-lg text-sm font-medium hover:brightness-95 transition-all">All Records</button>
+<button class="bg-surface-container-low text-tertiary px-6 py-2 rounded-lg text-sm font-medium hover:bg-surface-container-high transition-all">Blood Tests</button>
+<button class="bg-surface-container-low text-tertiary px-6 py-2 rounded-lg text-sm font-medium hover:bg-surface-container-high transition-all">Diagnostic Imaging</button>
+<button class="bg-surface-container-low text-tertiary px-6 py-2 rounded-lg text-sm font-medium hover:bg-surface-container-high transition-all">Physical Exams</button>
+</div>
+<!-- Bento Grid of Reports -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Large Feature Card: Latest Report -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl p-8 shadow-[0_32px_64px_rgba(0,72,141,0.06)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container opacity-20 rounded-bl-full group-hover:scale-110 transition-transform duration-500"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-12">
+<div>
+<span class="label-md bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full mb-4 inline-block">MOST RECENT</span>
+<h2 class="headline-md mb-1">Comprehensive Metabolic Panel</h2>
+<p class="text-tertiary body-md">Blood Chemistry &amp; Electrolytes</p>
+</div>
+<div class="text-right">
+<p class="title-lg font-semibold text-primary">OCT 14, 2023</p>
+<p class="label-md text-tertiary">10:45 AM</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+<div class="space-y-1">
+<p class="label-md text-tertiary">PHYSICIAN</p>
+<p class="body-md font-semibold">Dr. Alistair Thorne</p>
+</div>
+<div class="space-y-1">
+<p class="label-md text-tertiary">FACILITY</p>
+<p class="body-md font-semibold">Central Wing</p>
+</div>
+<div class="space-y-1">
+<p class="label-md text-tertiary">STATUS</p>
+<span class="inline-flex items-center text-secondary font-semibold gap-1 text-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Verified
+                                </span>
+</div>
+<div class="space-y-1">
+<p class="label-md text-tertiary">PAGES</p>
+<p class="body-md font-semibold">12 PDF Pages</p>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-3 rounded-lg font-medium flex items-center gap-2 hover:shadow-lg transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+                                View Online
+                            </button>
+<button class="outline outline-1 outline-outline-variant/15 text-primary px-8 py-3 rounded-lg font-medium hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-lg inline-block align-middle mr-2" data-icon="download">download</span>
+                                Download PDF
+                            </button>
+</div>
+</div>
+</div>
+<!-- Secondary Metric Card -->
+<div class="bg-surface-container-high rounded-xl p-8 flex flex-col justify-between border-none">
+<div>
+<span class="material-symbols-outlined text-primary text-4xl mb-4" data-icon="health_and_safety">health_and_safety</span>
+<h3 class="headline-md text-xl mb-4">Health Summary</h3>
+<p class="body-md text-tertiary leading-relaxed">Your biometric trends indicate a 4% improvement in cardiovascular efficiency since July.</p>
+</div>
+<div class="mt-8">
+<div class="h-24 w-full flex items-end gap-1">
+<div class="w-1/6 bg-primary/20 h-1/2 rounded-t-sm"></div>
+<div class="w-1/6 bg-primary/30 h-2/3 rounded-t-sm"></div>
+<div class="w-1/6 bg-primary/40 h-1/3 rounded-t-sm"></div>
+<div class="w-1/6 bg-primary/60 h-4/5 rounded-t-sm"></div>
+<div class="w-1/6 bg-primary/80 h-3/4 rounded-t-sm"></div>
+<div class="w-1/6 bg-primary h-full rounded-t-sm"></div>
+</div>
+<p class="label-md text-center mt-4 text-tertiary">VITALITY SPARKLINE (6 MONTHS)</p>
+</div>
+</div>
+<!-- List of Historical Reports (Card List Pattern) -->
+<div class="lg:col-span-3 space-y-4 mt-8">
+<h3 class="title-lg font-headline mb-6">Historical Archive</h3>
+<!-- Report Item 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="radiology">radiology</span>
+</div>
+<div>
+<h4 class="font-semibold text-lg">Chest X-Ray (AP/Lateral View)</h4>
+<p class="text-tertiary text-sm">Diagnostic Imaging • Dr. Elena Rodriguez</p>
+</div>
+</div>
+<div class="flex items-center gap-12">
+<div class="text-right hidden md:block">
+<p class="font-medium">SEP 12, 2023</p>
+<p class="text-xs text-tertiary uppercase tracking-wider">Reference: #8829-X</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all active:scale-90" title="Quick View">
+<span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+</button>
+<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all active:scale-90" title="Download">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="p-2 hover:bg-surface-variant rounded-lg text-tertiary transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Report Item 2 -->
+<div class="bg-surface-container-low p-6 rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-surface-container-lowest transition-colors group">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="stethoscope">stethoscope</span>
+</div>
+<div>
+<h4 class="font-semibold text-lg">Annual Physical Assessment</h4>
+<p class="text-tertiary text-sm">Routine Exam • Dr. Marcus Chen</p>
+</div>
+</div>
+<div class="flex items-center gap-12">
+<div class="text-right hidden md:block">
+<p class="font-medium">AUG 05, 2023</p>
+<p class="text-xs text-tertiary uppercase tracking-wider">Reference: #4401-P</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all" title="Quick View">
+<span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+</button>
+<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all" title="Download">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="p-2 hover:bg-surface-variant rounded-lg text-tertiary transition-all">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Report Item 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+</div>
+<div>
+<h4 class="font-semibold text-lg">Lipid Panel &amp; Glucose</h4>
+<p class="text-tertiary text-sm">Pathology • Dr. Alistair Thorne</p>
+</div>
+</div>
+<div class="flex items-center gap-12">
+<div class="text-right hidden md:block">
+<p class="font-medium">JUN 18, 2023</p>
+<p class="text-xs text-tertiary uppercase tracking-wider">Reference: #3312-L</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all" title="Quick View">
+<span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+</button>
+<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-all" title="Download">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="p-2 hover:bg-surface-variant rounded-lg text-tertiary transition-all">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State/Footer Action -->
+<div class="lg:col-span-3 py-16 text-center border-t border-dashed border-outline-variant/30 mt-8">
+<span class="material-symbols-outlined text-outline text-5xl mb-4" data-icon="history">history</span>
+<p class="body-md text-tertiary">Viewing records from the last 24 months. For older archives, please contact Medical Records Dept.</p>
+<button class="mt-6 text-primary font-semibold hover:underline flex items-center gap-2 mx-auto">
+                        Request Archival Retrieval <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+</body></html>
